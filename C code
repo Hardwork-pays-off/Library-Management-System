@@ -1,0 +1,50 @@
+//Code for a library management system using structures in C language
+
+
+struct library
+{
+    int id;
+    char name[20];
+    char author[40];
+    char publisher[20];
+    int quantity; 
+};
+
+struct library c[50];
+
+void add(FILE *fp);
+void modify(struct library c);
+void list(struct library c);
+void search(struct library c);
+void delete(struct library c);
+
+int main()
+
+{
+ FILE *fp;
+ int i;
+ fp = fopen("Lib_rec.txt", "r+");
+ if (fp == NULL)
+ fp = fopen("Lib_rec.txt", "w");
+ fseek(fp, 0, SEEK_END); 
+ //fprintf(fp, "%d %s %s %s %d", c[i].id,  c[i].name,  c[i].author, c[i].publisher, c[i].quantity);
+
+ fclose(fp);
+ 
+    return 0;
+}
+
+void add(FILE *fp)
+{
+    int id, quantity;
+    char name[20], author[40], publisher[20];
+    int i =0; char c[199];
+    for (i=0; fgets(c, 199, fp); i++)
+    {
+        scanf("%d %s %s %s %d", &id,  name,  author, publisher, &quantity );
+        fprintf(fp, "%d %s %s %s %d", id,  name,  author, publisher, quantity );
+    }
+}
+    
+
+
